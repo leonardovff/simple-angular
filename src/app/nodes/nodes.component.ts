@@ -13,7 +13,7 @@ export class NodesComponent implements OnInit {
   constructor(public store: NodesStore) {}
 
   ngOnInit() {
-    this.store.getStatus();
+    this.store.getStatusAndBlocks();
   }
 
   ToogleExpand(node: Node): void {

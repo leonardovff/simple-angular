@@ -14,9 +14,10 @@ export class NodesStore extends Store<Node[]> {
     super(new State().list);
   }
 
-  public getStatus() {
+  public getStatusAndBlocks() {
     this._getStatus().subscribe((value: any) => {
       this.setState([...value]);
+      this.getBlocks();
     });
   }
 
@@ -38,7 +39,37 @@ export class NodesStore extends Store<Node[]> {
         })
       );
     });
+    return forkJoin(status);
+  }
+  getBlocks(){
+    this._getBlocks().subscribe((value: any) => {
+      this.setState([...value]);
+    });
+  }
 
+  public _getBlocks() {
+    const status = this.state.map(node => {
+      return this.api.get(`${node.url}/api/v1/blocks`).pipe(
+        catchError(error =>
+          of({
+            ...node,
+            blocks: {
+              data: [],
+              loading: false
+            }
+          })
+        ),
+        map(({ data }) => {
+          return {
+            ...node,
+            blocks: {
+              data: data ? data : [],
+              loading: false
+            }
+          };
+        })
+      );
+    });
     return forkJoin(status);
   }
 }

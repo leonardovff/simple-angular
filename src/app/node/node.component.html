@@ -13,5 +13,17 @@
       {{ node.url }}
     </span>
   </div>
-  <div class="blocks-wrapper" *ngIf="expanded">Blocks go here</div>
+
+  <div class="blocks-wrapper" *ngIf="expanded && node?.blocks?.loading">
+    <app-status [loading]="true"></app-status>
+  </div>
+  <div class="blocks-wrapper" *ngIf="expanded && !node?.blocks?.loading">
+    <p *ngFor="let block of node?.blocks?.data">
+      <span>{{ block.id }}</span>
+      {{ block.attributes.data }}
+    </p>
+    <div *ngIf="!node?.blocks?.data?.length">
+      There is not blocks
+    </div>
+  </div>
 </div>

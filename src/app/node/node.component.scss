@@ -1,11 +1,11 @@
 @import "../../assets/stylesheets/base/colors";
 
 .wrapper{
-  margin: 10px 0;
+  margin: 13.36px 0;
   padding: 10px;
-  border: 1px solid #aaaaaa;
   background: #f8f8f8;
-  border-radius: 5px;
+  border-radius: 3px;
+  box-shadow: 0px 2px 7px rgb(0 0 0 / 20%);
 }
 
 .head{
@@ -17,13 +17,15 @@
   display: flex;
   justify-content: space-between;
 }
-
+.head, .body {
+  margin-left: 6.64px;
+}
 .name{
   margin-top: 0;
   margin-bottom: 6px;
-  color: #5bb7db;
+  color: #263238;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .url{
@@ -72,8 +74,33 @@
 }
 
 .blocks-wrapper{
-  margin: 20px 0;
+  margin: 12px 0 16px;
   text-align: center;
   color: $danger-color;
   font-weight: 700;
+  p {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    padding: 4px 8px;
+    margin: 0 0 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #263238;
+    text-align: left;
+    span {
+      display: inline-block;
+      width: 100%;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #304FFE;
+    }
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
 }
